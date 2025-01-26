@@ -6,29 +6,30 @@ import { useOptionalUser } from "~/utils";
 export const meta: MetaFunction = () => [
   { title: "Notes Manager" },
   {
-    name: 'author',
-    content: 'Laura Arcidiacono',
+    name: "author",
+    content: "Laura Arcidiacono",
   },
   {
-    name:"description",
-    content:"Easily manage your notes with CRUD features."
+    name: "description",
+    content: "Easily manage your notes with CRUD features.",
   },
   {
-    name:"og:title",
-    content:"Contacts Manager App"
+    name: "og:title",
+    content: "Contacts Manager App",
   },
   {
-    name:"og:description",
-    content:"Easily manage your notes with CRUD features."
+    name: "og:description",
+    content: "Easily manage your notes with CRUD features.",
   },
   {
-    name:"og:image",
-    content:"../public/assets/app-image.png"
+    name: "og:image",
+    content: "../public/assets/app-image.png",
   },
   {
-    name:"og:url",
-    content:"https://github.com/LauraArcidiacono/remix-sqlite-prisma-notes-manager",
-  }
+    name: "og:url",
+    content:
+      "https://github.com/LauraArcidiacono/remix-sqlite-prisma-notes-manager",
+  },
 ];
 
 export default function Index() {
@@ -44,13 +45,13 @@ export default function Index() {
                   Notes Manager
                 </span>
               </h1>
-              <div className="mx-auto mt-510 max-w-sm sm:flex sm:max-w-none sm:justify-center">
+              <div className="mt-510 mx-auto max-w-sm sm:flex sm:max-w-none sm:justify-center">
                 {user ? (
                   <Link
                     to="/notes"
                     className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium text-yellow-700 shadow-sm hover:bg-yellow-50 sm:px-8"
                   >
-                    View Notes for {user.email}
+                    View Notes for {`${user.firstName} ${user.lastName}`}
                   </Link>
                 ) : (
                   <div className="space-y-4 sm:mx-auto sm:inline-grid sm:grid-cols-2 sm:gap-5 sm:space-y-0">
