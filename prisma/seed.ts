@@ -31,6 +31,8 @@ async function seed() {
     data: {
       title: "My first note",
       body: "Hello, world!",
+      topic: "Other",
+      favorites: true,
       userId: user.id,
     },
   });
@@ -39,9 +41,23 @@ async function seed() {
     data: {
       title: "My second note",
       body: "Hello, world!",
+      topic: "Family",
+      favorites: false,
       userId: user.id,
     },
   });
+
+  await prisma.note.create({
+    data: {
+      title: "My third note",
+      body: "I like prisma!!",
+      topic: "Work",
+      favorites: true,
+      userId: user.id,
+    },
+  });
+
+
 
   console.log(`Database has been seeded. 🌱`);
 }

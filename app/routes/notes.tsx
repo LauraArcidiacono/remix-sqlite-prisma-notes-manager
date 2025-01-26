@@ -54,6 +54,7 @@ export default function NotesPage() {
                     to={note.id}
                   >
                     📝 {note.title}
+                    {note.favorites && <span className="text-yellow-500 ml-5">★</span>}
                   </NavLink>
                 </li>
               ))}
