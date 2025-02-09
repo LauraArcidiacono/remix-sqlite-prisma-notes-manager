@@ -15,55 +15,60 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   const topic = formData.get("topic");
   const favorites = formData.get("favorites") === "true";
 
+  // Validaciones
   if (typeof title !== "string" || title.length === 0) {
     return json(
-      { errors: {
-          body: null,
+      {
+        errors: {
           title: "Title is required",
+          body: null,
           topic: null,
           favorites: null,
-        }
+        },
       },
-      { status: 400 },
+      { status: 400 }
     );
   }
 
   if (typeof body !== "string" || body.length === 0) {
     return json(
-      { errors: {
-          body: "Body is required",
+      {
+        errors: {
           title: null,
+          body: "Body is required",
           topic: null,
           favorites: null,
-        }
+        },
       },
-      { status: 400 },
+      { status: 400 }
     );
   }
 
-  if (typeof topic !== "string") {
+  if (typeof topic !== "string" || topic.length === 0) {
     return json(
-      { errors: {
-          body: null,
+      {
+        errors: {
           title: null,
+          body: null,
           topic: "Topic is required",
           favorites: null,
-        }
+        },
       },
-      { status: 400 },
+      { status: 400 }
     );
   }
 
+  // Creación de la nota en la BD
   const note = await createNote({ body, title, userId, topic, favorites });
-
   return redirect(`/notes/${note.id}`);
 };
 
 export default function NewNotePage() {
   const actionData = useActionData<typeof action>();
+
   const titleRef = useRef<HTMLInputElement>(null);
   const bodyRef = useRef<HTMLTextAreaElement>(null);
-  const topicRef = useRef<HTMLInputElement>(null);
+  const topicRef = useRef<HTMLSelectElement>(null);
   const favoritesRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -90,11 +95,13 @@ export default function NewNotePage() {
     >
       <div>
         <label className="flex w-full flex-col gap-1">
-          <span>Title: </span>
+          <span className="text-sm font-medium text-gray-700">Title: </span>
           <input
             ref={titleRef}
             name="title"
-            className="flex-1 rounded-md border-2 border-blue-500 px-3 text-lg leading-loose"
+            className="flex-1 appearance-none rounded-md border border-blue-500 bg-white
+                       px-3 py-2 text-sm leading-tight text-gray-700
+                       focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
             aria-invalid={actionData?.errors?.title ? true : undefined}
             aria-errormessage={
               actionData?.errors?.title ? "title-error" : undefined
@@ -107,15 +114,16 @@ export default function NewNotePage() {
           </div>
         ) : null}
       </div>
-
       <div>
         <label className="flex w-full flex-col gap-1">
-          <span>Body: </span>
+          <span className="text-sm font-medium text-gray-700">Body: </span>
           <textarea
             ref={bodyRef}
             name="body"
             rows={8}
-            className="w-full flex-1 rounded-md border-2 border-blue-500 px-3 py-2 text-lg leading-6"
+            className="w-full appearance-none rounded-md border border-blue-500 bg-white
+                       px-3 py-2 text-sm leading-tight text-gray-700
+                       focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
             aria-invalid={actionData?.errors?.body ? true : undefined}
             aria-errormessage={
               actionData?.errors?.body ? "body-error" : undefined
@@ -129,43 +137,54 @@ export default function NewNotePage() {
         ) : null}
       </div>
       <div>
-        <label className="flex w-full flex-col gap-1">
-          <span>Topic: </span>
+        <label className="flex items-center gap-2">
+          <span className="text-sm font-medium text-gray-700">Topic:</span>
           <select
-            name="select"
-            className="flex-1 rounded-md border-2 border-blue-500 px-3 text-lg leading-loose"
+            ref={topicRef}
+            name="topic"
+            defaultValue="Others"
+            className="block w-40 appearance-none rounded-md border border-blue-500 bg-white
+                       px-3 py-2 text-sm leading-tight text-gray-700
+                       focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
             aria-invalid={actionData?.errors?.topic ? true : undefined}
-            aria-errormessage={ actionData?.errors?.topic ? "topic-error" : undefined }
+            aria-errormessage={
+              actionData?.errors?.topic ? "topic-error" : undefined
+            }
           >
-              <option value="Family">Family</option>
-              <option value="Work">Work</option>
-              <option value="Travels">Travels</option>
-              <option value="Friends">Friends</option>
-              <option value="Others" selected>Others</option>
+            <option value="Family">Family</option>
+            <option value="Work">Work</option>
+            <option value="Travels">Travels</option>
+            <option value="Friends">Friends</option>
+            <option value="Others">Others</option>
           </select>
         </label>
         {actionData?.errors?.topic ? (
-          <div className="pt-1 text-red-700" id="topic-error">
+          <div className="mt-1 text-sm text-red-600" id="topic-error">
             {actionData.errors.topic}
           </div>
         ) : null}
       </div>
-      <div>
-        <label className="flex w-full flex-col gap-1">
-          <span>Favorite: </span>
+      <div className="mt-4">
+        <label className="flex items-center gap-2">
+          <span className="text-sm font-medium text-gray-700">Favorite:</span>
           <input
-            name="favorites"
-            value="false"
+            ref={favoritesRef}
             type="checkbox"
+            name="favorites"
+            value="true"
+            className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+            aria-invalid={actionData?.errors?.favorites ? true : undefined}
+            aria-errormessage={
+              actionData?.errors?.favorites ? "topic-error" : undefined
+            }
           />
         </label>
-        {actionData?.errors?.topic ? (
-          <div className="pt-1 text-red-700" id="topic-error">
-            {actionData.errors.topic}
+        {actionData?.errors?.favorites ? (
+          <div className="mt-1 text-sm text-red-600" id="topic-error">
+            {actionData.errors.favorites}
           </div>
         ) : null}
       </div>
-
       <div className="text-right">
         <button
           type="submit"

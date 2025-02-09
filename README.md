@@ -47,9 +47,11 @@ This is a pretty simple note-taking app, but it's a good example of how you can 
 The sqlite database lives at `/data/sqlite.db` in your deployed application. You can connect to the live database by running:
 
 ```sh
-sqlite3 file:./data.db?connection_limit=1
+sqlite3 ./prisma/data.db
 ```
+
 Then you can run queries like:
+
 ```sql
 UPDATE "User"
 SET "birthDate" = '1995-01-20T00:00:00.000Z'
@@ -63,9 +65,11 @@ Prisma comes with a small web application called ‘Prisma Studio’ that allows
 Make sure your `.env` file contains the `DATABASE_URL` variable pointing to your database.
 
 Run in the terminal:
+
 ```sh
 npx prisma studio
 ```
+
 This will open a web interface (usually at http://localhost:5555) with a table browser.
 
 ## Testing

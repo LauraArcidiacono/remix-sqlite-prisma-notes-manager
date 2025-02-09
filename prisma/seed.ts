@@ -57,8 +57,6 @@ async function seed() {
     },
   });
 
-
-
   console.log(`Database has been seeded. 🌱`);
 }
 

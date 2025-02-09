@@ -36,9 +36,11 @@ export default function NoteDetailsPage() {
 
   return (
     <div>
-      <div className="flex flex-start items-center">
+      <div className="flex-start flex items-center">
         <h3 className="text-2xl font-bold">{data.note.title}</h3>
-        <p className="text-yellow-500 ml-5">{data.note.favorites ? "★" : "☆"}</p>
+        <p className="ml-5 text-yellow-500">
+          {data.note.favorites ? "★" : "☆"}
+        </p>
       </div>
       <p className="text-gray-500">Topic: {data.note.topic}</p>
       <p className="py-6">{data.note.body}</p>

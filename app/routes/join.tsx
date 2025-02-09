@@ -28,14 +28,15 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
   if (typeof firstName !== "string" || firstName.length === 0) {
     return json(
-      { errors: {
+      {
+        errors: {
           firstName: "First name is required",
           lastName: null,
           birthDate: null,
           email: null,
           password: null,
           generalError: null,
-        }
+        },
       },
       { status: 400 },
     );
@@ -43,14 +44,15 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
   if (typeof lastName !== "string" || lastName.length === 0) {
     return json(
-      { errors: {
+      {
+        errors: {
           firstName: null,
           lastName: "Last name is required",
           birthDate: null,
           email: null,
           password: null,
           generalError: null,
-        }
+        },
       },
       { status: 400 },
     );
@@ -58,14 +60,15 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
   if (typeof birthDateString !== "string" || birthDateString.length === 0) {
     return json(
-      { errors: {
+      {
+        errors: {
           firstName: null,
           lastName: null,
           birthDate: "Birth date is required",
           email: null,
           password: null,
           generalError: null,
-        }
+        },
       },
       { status: 400 },
     );
@@ -73,29 +76,32 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
   const birthDate = new Date(birthDateString);
   if (isNaN(birthDate.getTime())) {
-    return json({
-      errors: {
-        firstName: null,
-        lastName: null,
-        birthDate: "Birth date is invalid",
-        email: null,
-        password: null,
-        generalError: null,
-      }
-    },
-    { status: 400 });
+    return json(
+      {
+        errors: {
+          firstName: null,
+          lastName: null,
+          birthDate: "Birth date is invalid",
+          email: null,
+          password: null,
+          generalError: null,
+        },
+      },
+      { status: 400 },
+    );
   }
 
   if (!validateEmail(email)) {
     return json(
-      { errors: {
+      {
+        errors: {
           firstName: null,
           lastName: null,
           birthDate: null,
           email: "Email is invalid",
           password: null,
           generalError: null,
-        }
+        },
       },
       { status: 400 },
     );
@@ -103,14 +109,15 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
   if (typeof password !== "string" || password.length === 0) {
     return json(
-      { errors: {
+      {
+        errors: {
           firstName: null,
           lastName: null,
           birthDate: null,
           email: null,
           password: "Password is required",
           generalError: null,
-        }
+        },
       },
       { status: 400 },
     );
@@ -118,14 +125,15 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
   if (password.length < 8) {
     return json(
-      { errors: {
+      {
+        errors: {
           firstName: null,
           lastName: null,
           birthDate: null,
           email: null,
           password: "Password must be at least 8 characters",
           generalError: null,
-        }
+        },
       },
       { status: 400 },
     );
@@ -148,7 +156,13 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     );
   }
 
-  const user = await createUser(firstName, lastName, birthDate, email, password);
+  const user = await createUser(
+    firstName,
+    lastName,
+    birthDate,
+    email,
+    password,
+  );
 
   return createUserSession({
     redirectTo,
