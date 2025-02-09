@@ -65,7 +65,7 @@ export function ErrorBoundary() {
   }
 
   if (!isRouteErrorResponse(error)) {
-    return <h1>Unknown Error</h1>;
+    return <h2>Unknown Error</h2>;
   }
 
   if (error.status === 404) {

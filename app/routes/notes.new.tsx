@@ -99,7 +99,7 @@ export default function NewNotePage() {
           <input
             ref={titleRef}
             name="title"
-            className="flex-1 appearance-none rounded-md border border-yellow-500 bg-white px-3 py-2 text-sm leading-tight text-yellow-700 focus:border-yellow-600 focus:outline-none focus:ring-1 focus:ring-yellow-600"
+            className="flex-1 w-full appearance-none rounded-md border border-yellow-500 bg-white px-3 py-2 text-sm leading-tight text-yellow-700 focus:border-yellow-600 focus:outline-none focus:ring-1 focus:ring-yellow-600"
             aria-invalid={actionData?.errors?.title ? true : undefined}
             aria-errormessage={
               actionData?.errors?.title ? "title-error" : undefined

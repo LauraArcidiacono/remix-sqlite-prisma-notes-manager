@@ -1,10 +1,10 @@
 import type { LoaderFunctionArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { Form, Link, NavLink, Outlet, useLoaderData } from "@remix-run/react";
+import { Link, NavLink, Outlet, useLoaderData } from "@remix-run/react";
 
+import Header from "~/components/header";
 import { getNoteListItems } from "~/models/note.server";
 import { requireUserId } from "~/session.server";
-import { useUser } from "~/utils";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const userId = await requireUserId(request);
@@ -14,26 +14,11 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
 export default function NotesPage() {
   const data = useLoaderData<typeof loader>();
-  const user = useUser();
 
   return (
-    <div className="flex h-full min-h-screen flex-col">
-      <header className="flex items-center justify-between bg-slate-800 p-4 text-white">
-        <h1 className="text-3xl font-bold">
-          <Link to=".">Notes</Link>
-        </h1>
-        <p>{`${user.firstName} ${user.lastName}`}</p>
-        <Form action="/logout" method="post">
-          <button
-            type="submit"
-            className="rounded bg-slate-600 px-4 py-2 text-yellow-100 hover:bg-yellow-500 active:bg-yellow-600"
-          >
-            Logout
-          </button>
-        </Form>
-      </header>
-
-      <main className="flex h-full bg-white">
+    <>
+      <Header title="Notes" page="notes" />
+      <main className="fixed top-25 bottom-0 z-10 flex h-[calc(100vh-7rem)] h-full w-full bg-white">
         <div className="h-full w-80 border-r bg-gray-50">
           <Link to="new" className="block p-4 text-xl text-yellow-500">
             + New Note
@@ -68,6 +53,6 @@ export default function NotesPage() {
           <Outlet />
         </div>
       </main>
-    </div>
+    </>
   );
 }
