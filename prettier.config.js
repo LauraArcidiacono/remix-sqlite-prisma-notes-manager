@@ -5,4 +5,6 @@ export default {
   semi: true,
   singleQuote: false,
   plugins: ["prettier-plugin-tailwindcss"],
+  htmlWhitespaceSensitivity: "strict",
+  printWidth: 80,
 };

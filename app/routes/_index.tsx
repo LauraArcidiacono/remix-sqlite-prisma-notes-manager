@@ -49,36 +49,21 @@ export default function Index() {
                 {user ? (
                   <Link
                     to="/notes"
-                    className="inline-flex items-center justify-center
-                                rounded-md border border-transparent
-                                bg-yellow-500 px-4 py-2 text-sm font-medium text-white
-                                hover:bg-yellow-600
-                                focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2
-                                transition-colors"
+                    className="inline-flex items-center justify-center rounded-md border border-transparent bg-yellow-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2"
                   >
                     View Notes for {`${user.firstName} ${user.lastName}`}
                   </Link>
                 ) : (
-                  <div className="flex flex-row place-content-around gap-4 mt-4">
+                  <div className="mt-4 flex flex-row place-content-around gap-4">
                     <Link
                       to="/signUp"
-                      className="inline-flex items-center justify-center
-                                rounded-md border border-transparent
-                                bg-yellow-500 px-4 py-2 text-sm font-medium text-white
-                                hover:bg-yellow-600
-                                focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2
-                                transition-colors gap-3"
+                      className="inline-flex items-center justify-center gap-3 rounded-md border border-transparent bg-yellow-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2"
                     >
                       Sign up
                     </Link>
                     <Link
                       to="/login"
-                      className="inline-flex items-center justify-center
-                                rounded-md border border-transparent
-                                bg-yellow-500 px-4 py-2 text-sm font-medium text-white
-                                hover:bg-yellow-600
-                                focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2
-                                transition-colors gap-3"
+                      className="inline-flex items-center justify-center gap-3 rounded-md border border-transparent bg-yellow-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2"
                     >
                       Log In
                     </Link>

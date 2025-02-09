@@ -99,9 +99,7 @@ export default function NewNotePage() {
           <input
             ref={titleRef}
             name="title"
-            className="flex-1 appearance-none rounded-md border border-yellow-500 bg-white px-3 py-2
-            text-sm leading-tight text-yellow-700 focus:border-yellow-600 focus:outline-none focus:ring-1
-            focus:ring-yellow-600"
+            className="flex-1 appearance-none rounded-md border border-yellow-500 bg-white px-3 py-2 text-sm leading-tight text-yellow-700 focus:border-yellow-600 focus:outline-none focus:ring-1 focus:ring-yellow-600"
             aria-invalid={actionData?.errors?.title ? true : undefined}
             aria-errormessage={
               actionData?.errors?.title ? "title-error" : undefined
@@ -121,8 +119,7 @@ export default function NewNotePage() {
             ref={bodyRef}
             name="body"
             rows={8}
-            className="w-full appearance-none rounded-md border border-yellow-500 bg-white px-3 py-2 text-sm
-            leading-tight text-yellow-700 focus:border-yellow-600 focus:outline-none focus:ring-1 focus:ring-yellow-600"
+            className="w-full appearance-none rounded-md border border-yellow-500 bg-white px-3 py-2 text-sm leading-tight text-yellow-700 focus:border-yellow-600 focus:outline-none focus:ring-1 focus:ring-yellow-600"
             aria-invalid={actionData?.errors?.body ? true : undefined}
             aria-errormessage={
               actionData?.errors?.body ? "body-error" : undefined
@@ -142,9 +139,7 @@ export default function NewNotePage() {
             ref={topicRef}
             name="topic"
             defaultValue="Others"
-            className="block w-40 appearance-none rounded-md border border-yellow-500 bg-white px-3
-            py-2 text-sm leading-tight text-yellow-700 focus:border-yellow-600 focus:outline-none focus:ring-1
-            focus:ring-yellow-600"
+            className="block w-40 appearance-none rounded-md border border-yellow-500 bg-white px-3 py-2 text-sm leading-tight text-yellow-700 focus:border-yellow-600 focus:outline-none focus:ring-1 focus:ring-yellow-600"
             aria-invalid={actionData?.errors?.topic ? true : undefined}
             aria-errormessage={
               actionData?.errors?.topic ? "topic-error" : undefined
@@ -171,7 +166,7 @@ export default function NewNotePage() {
             type="checkbox"
             name="favorites"
             value="true"
-            className="h-4 w-4 rounded accent-yellow-500 border-yellow-500 text-yellow-600 focus:ring-yellow-500"
+            className="h-4 w-4 rounded border-yellow-500 text-yellow-600 accent-yellow-500 focus:ring-yellow-500"
             aria-invalid={actionData?.errors?.favorites ? true : undefined}
             aria-errormessage={
               actionData?.errors?.favorites ? "topic-error" : undefined
