@@ -26,7 +26,7 @@ export default function NotesPage() {
         <Form action="/logout" method="post">
           <button
             type="submit"
-            className="rounded bg-slate-600 px-4 py-2 text-blue-100 hover:bg-blue-500 active:bg-blue-600"
+            className="rounded bg-slate-600 px-4 py-2 text-yellow-100 hover:bg-yellow-500 active:bg-yellow-600"
           >
             Logout
           </button>
@@ -35,7 +35,7 @@ export default function NotesPage() {
 
       <main className="flex h-full bg-white">
         <div className="h-full w-80 border-r bg-gray-50">
-          <Link to="new" className="block p-4 text-xl text-blue-500">
+          <Link to="new" className="block p-4 text-xl text-yellow-500">
             + New Note
           </Link>
 

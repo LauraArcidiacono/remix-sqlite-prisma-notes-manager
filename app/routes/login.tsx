@@ -62,7 +62,34 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   });
 };
 
-export const meta: MetaFunction = () => [{ title: "Login" }];
+export const meta: MetaFunction = () => [
+  { title: "Login" },
+  {
+    name: "author",
+    content: "Laura Arcidiacono",
+  },
+  {
+    name: "description",
+    content: "Easily manage your notes with CRUD features.",
+  },
+  {
+    name: "og:title",
+    content: "Contacts Manager App",
+  },
+  {
+    name: "og:description",
+    content: "Easily manage your notes with CRUD features.",
+  },
+  {
+    name: "og:image",
+    content: "../public/assets/app-image.png",
+  },
+  {
+    name: "og:url",
+    content:
+      "https://github.com/LauraArcidiacono/remix-sqlite-prisma-notes-manager",
+  },
+];
 
 export default function LoginPage() {
   const [searchParams] = useSearchParams();
@@ -141,7 +168,7 @@ export default function LoginPage() {
           <input type="hidden" name="redirectTo" value={redirectTo} />
           <button
             type="submit"
-            className="w-full rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:bg-blue-400"
+            className="w-full rounded bg-yellow-500 px-4 py-2 text-white hover:bg-yellow-600 focus:bg-yellow-400"
           >
             Log in
           </button>
@@ -151,7 +178,7 @@ export default function LoginPage() {
                 id="remember"
                 name="remember"
                 type="checkbox"
-                className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                className="h-4 w-4 rounded border-gray-300 text-yellow-600 focus:ring-yellow-500"
               />
               <label
                 htmlFor="remember"
@@ -163,7 +190,7 @@ export default function LoginPage() {
             <div className="text-center text-sm text-gray-500">
               Don&apos;t have an account?{" "}
               <Link
-                className="text-blue-500 underline"
+                className="text-yellow-500 underline"
                 to={{
                   pathname: "/join",
                   search: searchParams.toString(),

@@ -26,6 +26,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   const password = formData.get("password");
   const redirectTo = safeRedirect(formData.get("redirectTo"), "/");
 
+  // Validations
   if (typeof firstName !== "string" || firstName.length === 0) {
     return json(
       {
@@ -155,6 +156,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       { status: 400 },
     );
   }
+  // End Validations
 
   const user = await createUser(
     firstName,
@@ -172,7 +174,34 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   });
 };
 
-export const meta: MetaFunction = () => [{ title: "Sign Up" }];
+export const meta: MetaFunction = () => [
+  { title: "Sign Up" },
+  {
+    name: "author",
+    content: "Laura Arcidiacono",
+  },
+  {
+    name: "description",
+    content: "Easily manage your notes with CRUD features.",
+  },
+  {
+    name: "og:title",
+    content: "Contacts Manager App",
+  },
+  {
+    name: "og:description",
+    content: "Easily manage your notes with CRUD features.",
+  },
+  {
+    name: "og:image",
+    content: "../public/assets/app-image.png",
+  },
+  {
+    name: "og:url",
+    content:
+      "https://github.com/LauraArcidiacono/remix-sqlite-prisma-notes-manager",
+  },
+];
 
 export default function Join() {
   const [searchParams] = useSearchParams();
@@ -206,7 +235,7 @@ export default function Join() {
           <div>
             <label
               htmlFor="firstName"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-yellow-700"
             >
               First Name
             </label>
@@ -218,7 +247,7 @@ export default function Join() {
                 type="text"
                 aria-invalid={actionData?.errors?.firstName ? true : undefined}
                 aria-describedby="firstName-error"
-                className="w-full rounded border border-gray-500 px-2 py-1 text-lg"
+                className="w-full rounded border border-yellow-500 px-2 py-1 text-lg"
               />
               {actionData?.errors?.firstName ? (
                 <div className="pt-1 text-red-700" id="firstName-error">
@@ -230,7 +259,7 @@ export default function Join() {
           <div>
             <label
               htmlFor="lastName"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-yellow-700"
             >
               Last Name
             </label>
@@ -242,7 +271,7 @@ export default function Join() {
                 type="text"
                 aria-invalid={actionData?.errors?.lastName ? true : undefined}
                 aria-describedby="lastName-error"
-                className="w-full rounded border border-gray-500 px-2 py-1 text-lg"
+                className="w-full rounded border border-yellow-500 px-2 py-1 text-lg"
               />
               {actionData?.errors?.lastName ? (
                 <div className="pt-1 text-red-700" id="lastName-error">
@@ -254,7 +283,7 @@ export default function Join() {
           <div>
             <label
               htmlFor="birthDate"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-yellow-700"
             >
               Birth Date
             </label>
@@ -266,7 +295,7 @@ export default function Join() {
                 type="date"
                 aria-invalid={actionData?.errors?.birthDate ? true : undefined}
                 aria-describedby="birthDate-error"
-                className="w-full rounded border border-gray-500 px-2 py-1 text-lg"
+                className="w-full rounded border border-yellow-500 px-2 py-1 text-lg"
               />
               {actionData?.errors?.birthDate ? (
                 <div className="pt-1 text-red-700" id="birthDate-error">
@@ -278,7 +307,7 @@ export default function Join() {
           <div>
             <label
               htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-yellow-700"
             >
               Email address
             </label>
@@ -294,7 +323,7 @@ export default function Join() {
                 autoComplete="email"
                 aria-invalid={actionData?.errors?.email ? true : undefined}
                 aria-describedby="email-error"
-                className="w-full rounded border border-gray-500 px-2 py-1 text-lg"
+                className="w-full rounded border border-yellow-500 px-2 py-1 text-lg"
               />
               {actionData?.errors?.email ? (
                 <div className="pt-1 text-red-700" id="email-error">
@@ -307,7 +336,7 @@ export default function Join() {
           <div>
             <label
               htmlFor="password"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-yellow-700"
             >
               Password
             </label>
@@ -320,7 +349,7 @@ export default function Join() {
                 autoComplete="new-password"
                 aria-invalid={actionData?.errors?.password ? true : undefined}
                 aria-describedby="password-error"
-                className="w-full rounded border border-gray-500 px-2 py-1 text-lg"
+                className="w-full rounded border border-yellow-500 px-2 py-1 text-lg"
               />
               {actionData?.errors?.password ? (
                 <div className="pt-1 text-red-700" id="password-error">
@@ -333,15 +362,15 @@ export default function Join() {
           <input type="hidden" name="redirectTo" value={redirectTo} />
           <button
             type="submit"
-            className="w-full rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:bg-blue-400"
+            className="w-full rounded bg-yellow-500 px-4 py-2 text-white hover:bg-yellow-600 focus:bg-yellow-400"
           >
             Create Account
           </button>
           <div className="flex items-center justify-center">
-            <div className="text-center text-sm text-gray-500">
+            <div className="text-center text-sm text-yellow-500">
               Already have an account?{" "}
               <Link
-                className="text-blue-500 underline"
+                className="text-yellow-500 underline"
                 to={{
                   pathname: "/login",
                   search: searchParams.toString(),

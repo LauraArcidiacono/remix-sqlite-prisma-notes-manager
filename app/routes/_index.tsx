@@ -49,21 +49,36 @@ export default function Index() {
                 {user ? (
                   <Link
                     to="/notes"
-                    className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium text-yellow-700 shadow-sm hover:bg-yellow-50 sm:px-8"
+                    className="inline-flex items-center justify-center
+                                rounded-md border border-transparent
+                                bg-yellow-500 px-4 py-2 text-sm font-medium text-white
+                                hover:bg-yellow-600
+                                focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2
+                                transition-colors"
                   >
                     View Notes for {`${user.firstName} ${user.lastName}`}
                   </Link>
                 ) : (
-                  <div className="space-y-4 sm:mx-auto sm:inline-grid sm:grid-cols-2 sm:gap-5 sm:space-y-0">
+                  <div className="flex flex-row place-content-around gap-4 mt-4">
                     <Link
                       to="/join"
-                      className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium text-yellow-700 shadow-sm hover:bg-yellow-50 sm:px-8"
+                      className="inline-flex items-center justify-center
+                                rounded-md border border-transparent
+                                bg-yellow-500 px-4 py-2 text-sm font-medium text-white
+                                hover:bg-yellow-600
+                                focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2
+                                transition-colors gap-3"
                     >
                       Sign up
                     </Link>
                     <Link
                       to="/login"
-                      className="flex items-center justify-center rounded-md bg-yellow-500 px-4 py-3 font-medium text-white hover:bg-yellow-600"
+                      className="inline-flex items-center justify-center
+                                rounded-md border border-transparent
+                                bg-yellow-500 px-4 py-2 text-sm font-medium text-white
+                                hover:bg-yellow-600
+                                focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2
+                                transition-colors gap-3"
                     >
                       Log In
                     </Link>
