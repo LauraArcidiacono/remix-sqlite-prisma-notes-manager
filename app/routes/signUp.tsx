@@ -203,7 +203,7 @@ export const meta: MetaFunction = () => [
   },
 ];
 
-export default function Join() {
+export default function SignUp() {
   const [searchParams] = useSearchParams();
   const redirectTo = searchParams.get("redirectTo") ?? undefined;
   const actionData = useActionData<typeof action>();
